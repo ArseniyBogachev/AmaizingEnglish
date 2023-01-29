@@ -1,16 +1,24 @@
 <template>
   <div class="main">
-    <img src="../assets/learn.jpg" class="img-fluid" alt="">
-    <aboutcom></aboutcom>
+    <imagecom class="d-none d-sm-block"></imagecom>
+    <imagemob class="d-sm-none"></imagemob>
+    <aboutcom class="d-none d-lg-block"></aboutcom>
+    <aboutmob class="d-lg-none"></aboutmob>
   </div>
 </template>
 
 <script>
 import aboutcom from "@/components/Com/AboutCom";
+import aboutmob from "@/components/Mob/AboutMob";
+import imagecom from "@/components/Com/ImageAndOffCanvasCom";
+import imagemob from "@/components/Mob/ImageAndOffCanvasMob";
 export default {
   name: "HomeApp",
   components:{
     aboutcom,
+    aboutmob,
+    imagecom,
+    imagemob
   }
 }
 </script>
@@ -18,10 +26,5 @@ export default {
 <style scoped>
   .main{
 
-  }
-  .img-fluid{
-    width: 100%;
-    height: auto;
-    filter: brightness(30%)
   }
 </style>

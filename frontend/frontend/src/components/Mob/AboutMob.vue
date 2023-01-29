@@ -1,42 +1,13 @@
 <template>
   <div class="main">
-    <div class="wrapper-left">
-      <div class="text-left">
-        <h3>An element with position</h3>
-        <p>
-          An element with position: sticky; is positioned based on the user's scroll position.
-
-          A sticky element toggles between relative and fixed, depending on the scroll position.
-          It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).
-          An element with position: sticky; is positioned based on the user's scroll position.
-          A sticky element toggles between relative and fixed, depending on the scroll position.
-          A sticky element toggles between relative and fixed, depending on the scroll position.
-          An element with position: sticky; is positioned based on the user's scroll position.
-          A sticky element toggles between relative and fixed, depending on the scroll position.
-          A sticky element toggles between relative and fixed, depending on the scroll position.
-        </p>
-      </div>
-      <div class="carousel">
-        <mycarousel :carousel="carousel"></mycarousel>
-      </div>
+    <div class="carousel">
+      <mycarousel :carousel="carousel"></mycarousel>
     </div>
 
-
-    <div class="wrapper-right">
-      <div class="form-email">
-        <p class="title-form">Feedback</p>
-        <form action="">
-          <myinput v-model="firstname" :title="input.firstname"></myinput>
-          <myinput v-model="lastname" :title="input.lastname"></myinput>
-          <myinput v-model="email" :title="input.email"></myinput>
-          <mytextarea v-model="message" :title="textarea.message"></mytextarea>
-          <small class="small-text">По любым вопросам свяжитесь с нами через данную форму.</small>
-        </form>
-        <button type="button" class="btn btn-dark" @click="useTest([firstname, lastname, email, message])">SEND</button>
-      </div>
-      <div class="text-right">
+    <div class="wrapper-text">
+      <div class="text-red">
         <h3>An element with position</h3>
-        <p>
+        <p class="text">
           An element with position: sticky; is positioned based on the user's scroll position.
 
           A sticky element toggles between relative and fixed, depending on the scroll position.
@@ -47,9 +18,47 @@
           An element with position: sticky; is positioned based on the user's scroll position.
           A sticky element toggles between relative and fixed, depending on the scroll position.
           A sticky element toggles between relative and fixed, depending on the scroll position.
+
+          An element with position: sticky; is positioned based on the user's scroll position.
+          A sticky element toggles between relative and fixed, depending on the scroll position.
+
+          It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).
         </p>
       </div>
 
+      <div class="text-blue">
+        <h3>An element with position</h3>
+        <p class="text">
+          An element with position: sticky; is positioned based on the user's scroll position.
+
+          A sticky element toggles between relative and fixed, depending on the scroll position.
+          It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).
+          An element with position: sticky; is positioned based on the user's scroll position.
+          A sticky element toggles between relative and fixed, depending on the scroll position.
+          A sticky element toggles between relative and fixed, depending on the scroll position.
+          An element with position: sticky; is positioned based on the user's scroll position.
+          A sticky element toggles between relative and fixed, depending on the scroll position.
+          A sticky element toggles between relative and fixed, depending on the scroll position.
+
+          An element with position: sticky; is positioned based on the user's scroll position.
+          A sticky element toggles between relative and fixed, depending on the scroll position.
+
+          It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).
+        </p>
+      </div>
+
+    </div>
+
+    <div class="form-email">
+      <p class="title-form">Feedback</p>
+      <form action="">
+        <myinput v-model="firstname" :title="input.firstname"></myinput>
+        <myinput v-model="lastname" :title="input.lastname"></myinput>
+        <myinput v-model="email" :title="input.email"></myinput>
+        <mytextarea v-model="message" :title="textarea.message"></mytextarea>
+        <small class="small-text">По любым вопросам свяжитесь с нами через данную форму.</small>
+      </form>
+      <button type="button" class="btn btn-dark" @click="useTest([firstname, lastname, email, message])">SEND</button>
     </div>
   </div>
 </template>
@@ -59,9 +68,9 @@ import mycarousel from "@/components/UI/MyCarousel";
 import myinput from "@/components/UI/MyInput";
 import mytextarea from "@/components/UI/MyTextArea";
 import {useTest} from "@/hooks/useTest";
-import { ref } from "vue";
+import {ref} from "vue";
 export default {
-  name: "AboutCom",
+  name: "AboutMob",
   components: {
     mytextarea,
     myinput,
@@ -101,34 +110,37 @@ export default {
 
 <style scoped>
   .main{
-    padding: 5%;
+    margin-top: 50px;
+    padding: 1%;
+  }
+  .carousel{
+    width: 100%;
+    height: 300px;
   }
 
 
-  .wrapper-left{
-    display: flex;
-    justify-content: space-around;
+  .wrapper-text{
+    margin-top: 20px;
   }
-  .text-left{
+  .text-red{
     border-radius: 10px;
     padding: 2%;
     background-color: #933334;
-    width: 45%;
   }
-  .carousel{
-    width: 400px;
-    height: 300px;
-    margin-top: 1%;
-
+  .text-blue{
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 2%;
+    background-color: #393593;
+  }
+  .text{
+    font-size: 15px;
+    color: #e5dfde;
   }
 
 
-  .wrapper-right{
-    display: flex;
-    justify-content: space-around;
-  }
   .form-email{
-    width: 500px;
+    width: 100%;
     height: 400px;
     margin-top: 30px;
     padding: 1%;
@@ -145,11 +157,5 @@ export default {
   }
   .btn{
     margin-top: 20px;
-  }
-  .text-right{
-    width: 40%;
-    border-radius: 10px;
-    padding: 1%;
-    background-color: #393593;
   }
 </style>

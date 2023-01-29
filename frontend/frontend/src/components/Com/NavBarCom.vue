@@ -6,13 +6,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">HOME</a>
+              <a class="nav-link" aria-current="page" href="#" @click.prevent="$router.push('/')">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">COURSES</a>
+              <a class="nav-link" href="#" @click.prevent="$router.push('/courses')">COURSES</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">PRICES</a>
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="$router.push('/')">PRICES</a>
             </li>
           </ul>
         </div>
@@ -23,7 +23,7 @@
               <a class="nav-link" aria-current="page" href="#">LOGIN</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">REGISTER</a>
+              <a class="nav-link" href="#" @click.prevent="$router.push('/register')">REGISTER</a>
             </li>
         </ul>
       </div>
