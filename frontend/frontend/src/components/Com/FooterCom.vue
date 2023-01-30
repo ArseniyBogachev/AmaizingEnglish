@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
   footer{
-    margin-top: 200px;
+
   }
   .btn{
     width: 30px;

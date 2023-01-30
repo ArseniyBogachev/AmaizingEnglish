@@ -22,7 +22,7 @@
             <li class="wrapper-button" style="border-bottom: 1px solid #bfb9b8"><button type="button" class="choice-button">PRICES</button></li>
           </ul>
           <ul class="list-button" style="margin-top: 100px">
-            <li class="wrapper-button"><button type="button" class="choice-button">LOGIN</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/login')">LOGIN</button></li>
             <li class="wrapper-button" style="border-bottom: 1px solid #bfb9b8"><button type="button" class="choice-button" @click.prevent="$router.push('/register')">REGISTER</button></li>
           </ul>
         </div>

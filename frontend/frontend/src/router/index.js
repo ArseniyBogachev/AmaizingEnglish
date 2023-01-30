@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeApp from "@/pages/HomeApp";
 import CoursesApp from "@/pages/CoursesApp";
 import RegisterApp from "@/pages/RegisterApp";
+import LoginApp from "@/pages/LoginApp";
+import ChoiceCoursesApp from "@/pages/ChoiceCoursesApp";
 
 const routes = [
   {
@@ -18,6 +20,17 @@ const routes = [
     path: '/register',
     name: 'register',
     component: RegisterApp
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginApp
+  },
+  {
+    path: '/courses/:slug',
+    name: 'CoursesChildren',
+    component: ChoiceCoursesApp,
+    props: true,
   },
 ]
 

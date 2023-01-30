@@ -2,7 +2,7 @@
   <div class="app">
     <navbar></navbar>
     <router-view class="content"></router-view>
-    <footercom></footercom>
+    <footercom class="foo-ter"></footercom>
   </div>
 </template>
 
@@ -21,4 +21,16 @@ export default {
 
 
 <style>
+  .app{
+    min-height: 70em;
+    position: relative;
+  }
+  .content{
+    padding-bottom: 200px;
+  }
+  .foo-ter{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 </style>

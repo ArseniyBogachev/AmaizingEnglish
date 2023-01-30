@@ -4,6 +4,7 @@
       :small_text="small_text"
       :button_text="button_text"
       :input="input"
+      @useTest="useTest([input[0].value.value, input[1].value.value])"
   >
     <myinput v-model="i.value.value" :title="i.title" v-for="i in input"></myinput>
   </MyAuthAndRegister>
@@ -12,6 +13,7 @@
 <script>
 import myinput from "@/components/UI/MyInput";
 import MyAuthAndRegister from "@/components/UI/MyAuthAndRegister";
+import {useTest} from "@/hooks/useTest"
 import {ref} from "vue";
 export default {
   name: "LoginApp",
@@ -21,18 +23,15 @@ export default {
   },
   setup(){
     const input = [
-      {title: 'Firstname', value: ref('')},
-      {title: 'Lastname', value: ref('')},
       {title: 'E-mail', value: ref('')},
-      {title: 'Password', value: ref('')},
-      {title: 'Confirm password', value: ref('')},
+      {title: 'Password', value: ref('')}
     ]
 
-    const big_text = 'Регистрация'
-    const small_text = 'Зарегестрируйтесь для покупки продукта доступного на сайте.'
-    const button_text = 'Register'
+    const big_text = 'Авторизация'
+    const small_text = 'Авторизируйтесь для покупки продукта доступного на сайте.'
+    const button_text = 'Login'
 
-    return {input, big_text, small_text, button_text}
+    return {input, big_text, small_text, button_text, useTest}
   }
 }
 </script>
