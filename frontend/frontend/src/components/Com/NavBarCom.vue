@@ -6,13 +6,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#" @click.prevent="$router.push('/')">HOME</a>
+              <a class="nav-link" aria-current="page" href="#" @click.prevent="$router.push('/')">ГЛАВНАЯ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" @click.prevent="$router.push('/courses')">COURSES</a>
+              <a class="nav-link" href="#" @click.prevent="$router.push('/courses')">КУРСЫ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="$router.push('/')">PRICES</a>
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="$router.push('/')">ЦЕНЫ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="$router.push('/')">О НАС</a>
             </li>
           </ul>
         </div>
@@ -20,10 +23,10 @@
       <div class="d-flex">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#" @click.prevent="$router.push('/login')">LOGIN</a>
+              <a class="nav-link" aria-current="page" href="#" @click.prevent="$router.push('/login')">ВОЙТИ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" @click.prevent="$router.push('/register')">REGISTER</a>
+              <a class="nav-link" href="#" @click.prevent="$router.push('/register')">РЕГИСТРАЦИЯ</a>
             </li>
         </ul>
       </div>
@@ -46,7 +49,7 @@ export default {
 
   }
   .navbar{
-    padding: 1%;
+    padding-right: 1%;
   }
   .nav-item{
     margin-left: 30px;
@@ -55,7 +58,7 @@ export default {
     font-size: 16px;
   }
   .logo{
-    width: 70px;
-    height: 70px;
+    width: 85px;
+    height: 85px;
   }
 </style>

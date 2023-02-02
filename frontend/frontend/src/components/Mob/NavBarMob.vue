@@ -12,19 +12,35 @@
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasRightLabel">MENU</h5>
+
+          <div class="offcanvas-title d-flex flex-row">
+            <img src="../../assets/logo.png" class="logo" alt="">
+            <h6 class="offcanvas-title pt-2" id="offcanvasRightLabel">AMAZING ENGLISH</h6>
+          </div>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="offcanvas-body p-3">
           <ul class="list-button">
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/')">HOME</button></li>
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/courses')">COURSES</button></li>
-            <li class="wrapper-button" style="border-bottom: 1px solid #bfb9b8"><button type="button" class="choice-button">PRICES</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/')">ГЛАВНАЯ</button></li>
+            <hr>
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/courses')">КУРСЫ</button></li>
+            <hr>
+            <li class="wrapper-button"><button type="button" class="choice-button">ЦЕНЫ</button></li>
+            <hr>
+            <li class="wrapper-button"><button type="button" class="choice-button">О НАС</button></li>
+            <hr>
           </ul>
-          <ul class="list-button" style="margin-top: 100px">
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/login')">LOGIN</button></li>
-            <li class="wrapper-button" style="border-bottom: 1px solid #bfb9b8"><button type="button" class="choice-button" @click.prevent="$router.push('/register')">REGISTER</button></li>
+          <div class="phone mt-5 d-flex justify-content-center align-items-center">
+            <h5 class="text-white">8(800)555-35-35</h5>
+          </div>
+          <ul class="list-button mt-5">
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/login')">ВОЙТИ</button></li>
+            <hr>
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/register')">РЕГИСТРАЦИЯ</button></li>
           </ul>
+          <section class="list-icon">
+            <MyLinkIcons :icon="icon"></MyLinkIcons>
+          </section>
         </div>
       </div>
     </div>
@@ -33,8 +49,24 @@
 </template>
 
 <script>
+import MyLinkIcons from "@/components/UI/MyLinkIcons";
 export default {
-  name: "NavBarMob"
+  name: "NavBarMob",
+  components: {
+    MyLinkIcons,
+  },
+  setup(){
+    const icon = [
+      {name: 'fa-brands fa-facebook', color: '#3b5998'},
+      {name: 'fa-brands fa-telegram', color: '#55acee'},
+      {name: 'fa-brands fa-google', color: '#dd4b39'},
+      {name: 'fa-brands fa-instagram', color: '#ac2bac'},
+      {name: 'fa-brands fa-twitter', color: '#0082ca'},
+      {name: 'fa-brands fa-vk', color: '#333333'},
+    ]
+
+    return {icon}
+  }
 }
 </script>
 
@@ -46,23 +78,23 @@ export default {
     z-index: 3;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   .wrapper-logo{
 
   }
   .logo{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
   .wrapper-btn-menu{
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     margin-right: 10px;
   }
   .button{
     padding: 2%;
     border: none;
     background-color: white;
-
   }
   .line{
     display: block;
@@ -72,7 +104,7 @@ export default {
     background-color: #757173;
   }
   .offcanvas-body{
-    padding: 0;
+    position: relative;
   }
   .list-button{
     padding: 0;
@@ -80,7 +112,6 @@ export default {
   }
   .wrapper-button{
     list-style-type: none;
-    border-top: 1px solid #bfb9b8;
     width: 100%;
   }
   .btn-close:focus{
@@ -88,13 +119,23 @@ export default {
     box-shadow: none;
   }
   .choice-button{
-    width: 100%;
     border: none;
     background-color: white;
     color: #1f1b1d;
-    text-align: center;
+    font-weight: bold;
   }
-  .choice-button:active{
-    box-shadow: 0 0 5px 1px #b2acab inset;
+  .phone{
+    background: #a7cfdf;
+    background: -moz-linear-gradient(top,  #a7cfdf 0%, #23538a 100%);
+    background: -webkit-linear-gradient(top,  #a7cfdf 0%,#23538a 100%);
+    background: linear-gradient(to bottom,  #a7cfdf 0%,#23538a 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a',GradientType=0 );
+    width: 100%;
+    height: 60px;
+  }
+  .list-icon{
+    position: absolute;
+    left: 23%;
+    bottom: 10%;
   }
 </style>

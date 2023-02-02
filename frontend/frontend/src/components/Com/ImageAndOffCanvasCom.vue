@@ -2,8 +2,9 @@
   <div class="main">
     <img src="../../assets/learnEnglish.jpg" class="img-fluid" alt="">
     <div class="off-canvas">
-      <p class="big-text-more d-none d-md-block">Онлайн школа <br> Английского языка</p>
-      <p class="big-text-less d-md-none">Онлайн школа <br> Английского языка</p>
+      <p class="big-text-lg d-none d-lg-block">Преодолей языковой барьер <br> вместе с нами.</p>
+      <p class="big-text-md d-none d-md-block d-lg-none">Преодолей языковой барьер <br> вместе с нами.</p>
+      <p class="big-text-less d-md-none">Преодолей языковой барьер <br> вместе с нами.</p>
       <small class="small-text-more d-none d-md-block">— Записаться на онлайн консультацию.</small>
       <small class="small-text-less d-md-none">— Записаться на онлайн консультацию.</small>
       <div class="button-red">
@@ -24,23 +25,53 @@
         >ЗАПИСЬ
         </button>
 
-        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" data-bs-scroll="true">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" data-bs-scroll="true">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasBottomLabel">
-              <button type="button" class="btn btn-secondary" @click="useTest([firstname, lastname, email, phone, message])">SEND</button>
-            </h5>
+            <div class="offcanvas-title d-flex justify-content-between" id="offcanvasBottomLabel">
+            </div>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
           </div>
+
           <div class="offcanvas-body small">
+            <div class="d-flex">
+              <div style="width: 50px; height: 10px; background-color: #1024b0; border-radius: 10px 0 0 10px"></div>
+              <div style="width: 50px; height: 10px; background-color: #d00c0f; border-radius: 0 10px 10px 0"></div>
+            </div>
 
-              <form action="">
-                <myinput v-model="firstname" v-bind:title="title.firstname"></myinput>
-                <myinput v-model="lastname" v-bind:title="title.lastname"></myinput>
-                <myinput v-model="email" v-bind:title="title.email"></myinput>
-                <myinput v-model="phone" v-bind:title="title.phone"></myinput>
-                <mytextarea v-model="message" v-bind:title="textarea.message"></mytextarea>
-              </form>
+            <h2 class="text-body mt-4">Записаться <br> на онлайн <br> консультацию.</h2>
 
+            <form action="" class="form-body" style="margin-top: 25%">
+              <myinput v-model="firstname" v-bind:title="title.firstname"></myinput>
+              <myinput v-model="lastname" v-bind:title="title.lastname"></myinput>
+              <myinput v-model="email" v-bind:title="title.email"></myinput>
+              <myinput v-model="phone" v-bind:title="title.phone"></myinput>
+              <mytextarea v-model="message" v-bind:title="textarea.message"></mytextarea>
+            </form>
+
+            <div class="form-check" style="margin-top: 25%">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <h6 class="form-check-label">
+                Согласие с политикой конфиденциальности.
+                <button type="button" class="button-modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Посмотреть
+                </button>
+              </h6>
+            </div>
+            <button type="button" class="form-send w-100 mt-3" @click="useTest([firstname, lastname, email, phone, message])">ЗАПИСЬ</button>
+          </div>
+        </div>
+
+
+        <div class="modal fade h-100 w-100" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img class="w-100 h-100" src="../../assets/document.png" alt="...">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -84,7 +115,7 @@ export default {
 
 <style scoped>
   .main{
-
+    position: relative;
   }
   .img-fluid{
     width: 100%;
@@ -92,20 +123,23 @@ export default {
     filter: brightness(20%);
     border-bottom: 2px solid #1f1b1d;
     box-shadow: 0 0 5px 1px black;
-    position: relative;
   }
   .off-canvas{
     position: absolute;
-    top: 20%;
-    left: 20%;
+    bottom: 30%;
+    left: 15%;
   }
-  .big-text-more{
+  .big-text-lg{
     color: white;
     font-size: 50px;
   }
+  .big-text-md{
+    color: white;
+    font-size: 35px;
+  }
   .big-text-less{
     color: white;
-    font-size: 30px;
+    font-size: 20px;
   }
   .small-text-more{
     display: block;
@@ -118,7 +152,7 @@ export default {
     display: block;
     color: white;
     font-size: 15px;
-    margin-top: 5%;
+    margin-top: 10%;
     font-weight: lighter;
   }
   .button-red{
@@ -135,16 +169,17 @@ export default {
     background-color: #d00c0f;
     color: #eee8e7;
     font-weight: lighter;
+    font-size: 10px;
   }
   .btn:focus{
     box-shadow: none;
   }
-  .offcanvas-header{
-    box-shadow: 0 0 5px 1px black;
+  .offcanvas-title{
+    width: 35%;
   }
   .offcanvas-body{
-    border-top: 1px solid #bfb9b8;
-    padding: 1%;
+    padding: 8%;
+    margin-top: 10%;
   }
   .offcanvas-body::-webkit-scrollbar {
     width: 7px;
@@ -152,5 +187,34 @@ export default {
   }
   .offcanvas-body::-webkit-scrollbar-thumb {
     background-color: #474345;
+  }
+  .button-modal{
+    border: none;
+    background-color: white;
+    padding: 0;
+  }
+  .button-modal:hover{
+    text-decoration: underline;
+  }
+  .btn-close:focus{
+    box-shadow: none;
+  }
+  .form-check-input:checked{
+    background-color: #298c34;
+  }
+  .form-check-input:focus{
+    box-shadow: none;
+  }
+  .form-send{
+    border: none;
+    background-color: #d00c0f;
+    color: white;
+    border-radius: 10px;
+    font-size: 13px;
+    height: 40px;
+    letter-spacing: 2px;
+  }
+  .form-send:active{
+    box-shadow: 0 0 5px 1px #423e40 inset;
   }
 </style>
