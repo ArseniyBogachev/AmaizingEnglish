@@ -2,11 +2,8 @@
   <div class="main">
     <img src="../../assets/learnEnglish.jpg" class="img-fluid" alt="">
     <div class="off-canvas">
-      <p class="big-text-lg d-none d-lg-block">Преодолей языковой барьер <br> вместе с нами.</p>
-      <p class="big-text-md d-none d-md-block d-lg-none">Преодолей языковой барьер <br> вместе с нами.</p>
-      <p class="big-text-less d-md-none">Преодолей языковой барьер <br> вместе с нами.</p>
-      <small class="small-text-more d-none d-md-block">— Записаться на онлайн консультацию.</small>
-      <small class="small-text-less d-md-none">— Записаться на онлайн консультацию.</small>
+      <p class="big-text">Преодолей языковой барьер <br> вместе с нами.</p>
+      <small class="small-text">БЕСПЛАТНЫЙ урок определения уровня знания АНГЛИЙСКОГО ЯЗЫКА. <br> Курс "Говори!" <br> Видимый результат уже через 4 месяца.</small>
       <div class="button-red">
         <button
             type="button"
@@ -129,7 +126,7 @@ export default {
     bottom: 30%;
     left: 15%;
   }
-  .big-text-lg{
+  .big-text{
     color: white;
     font-size: 50px;
   }
@@ -141,7 +138,7 @@ export default {
     color: white;
     font-size: 20px;
   }
-  .small-text-more{
+  .small-text{
     display: block;
     color: white;
     font-size: 20px;
@@ -216,5 +213,32 @@ export default {
   }
   .form-send:active{
     box-shadow: 0 0 5px 1px #423e40 inset;
+  }
+  @media (max-width: 1532px) {
+    .off-canvas{
+      bottom: 20%;
+    }
+  }
+  @media (max-width: 1050px) {
+    .off-canvas{
+      bottom: 17%;
+    }
+    .big-text{
+      font-size: 35px;
+    }
+    .small-text{
+      font-size: 15px;
+    }
+  }
+  @media (max-width: 766px) {
+    .off-canvas{
+      bottom: 15%;
+    }
+    .big-text{
+      font-size: 25px;
+    }
+    .small-text{
+      font-size: 12px;
+    }
   }
 </style>

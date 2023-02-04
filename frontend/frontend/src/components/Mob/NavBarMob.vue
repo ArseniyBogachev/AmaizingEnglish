@@ -88,7 +88,6 @@ export default {
     height: 50px;
   }
   .wrapper-btn-menu{
-    /*margin-top: 10px;*/
     margin-right: 10px;
   }
   .button{
@@ -134,8 +133,8 @@ export default {
     height: 60px;
   }
   .list-icon{
-    position: absolute;
-    left: 23%;
-    bottom: 10%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
   }
 </style>

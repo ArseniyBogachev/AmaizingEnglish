@@ -3,11 +3,11 @@
     <img src="../../assets/learnEnglishMob.jpg" class="img-fluid d-sm-none" alt="">
     <div class="off-canvas">
       <p class="big-text">Преодолей языковой барьер <br> вместе с нами.</p>
-      <small class="small-text">— Записаться на онлайн консультацию.</small>
+      <small class="small-text">БЕСПЛАТНЫЙ урок определения уровня знания АНГЛИЙСКОГО ЯЗЫКА. <br> Курс "Говори!" <br> Видимый результат уже через 4 месяца.</small>
       <div class="button-red">
         <button type="button" class="btn btn-danger" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">ЗАПИСЬ</button>
 
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
             </h5>
@@ -112,7 +112,7 @@ export default {
   }
   .small-text{
     display: block;
-    margin-top: 25%;
+    margin-top: 17%;
     font-size: 18px;
     color: #eee8e7;
     font-weight: lighter;
@@ -159,5 +159,13 @@ export default {
   }
   .form-check-input:focus{
     box-shadow: none;
+  }
+  @media (max-width: 425px) {
+    .off-canvas{
+      bottom: 20%;
+    }
+    .small-text{
+      font-size: 15px;
+    }
   }
 </style>

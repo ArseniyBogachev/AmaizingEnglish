@@ -9,7 +9,7 @@
 
 <script>
 import navbar from "@/pages/NavBar";
-import footercom from "@/components/Com/FooterCom";
+import footercom from "@/components/FooterContent";
 export default {
   name: "App",
   components: {
