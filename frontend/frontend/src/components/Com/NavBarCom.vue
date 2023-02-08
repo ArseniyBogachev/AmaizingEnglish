@@ -12,7 +12,7 @@
               <a class="nav-link" href="#" @click.prevent="$router.push('/courses')">КУРСЫ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="$router.push('/')">ЦЕНЫ</a>
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="$router.push('/prices')">СТОИМОСТЬ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="$router.push('/')">О НАС</a>

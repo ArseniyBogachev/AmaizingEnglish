@@ -25,7 +25,7 @@
             <hr>
             <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/courses')">КУРСЫ</button></li>
             <hr>
-            <li class="wrapper-button"><button type="button" class="choice-button">ЦЕНЫ</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/prices')">СТОИМОСТЬ</button></li>
             <hr>
             <li class="wrapper-button"><button type="button" class="choice-button">О НАС</button></li>
             <hr>

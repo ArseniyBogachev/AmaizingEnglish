@@ -4,6 +4,7 @@ import CoursesApp from "@/pages/CoursesApp";
 import RegisterApp from "@/pages/RegisterApp";
 import LoginApp from "@/pages/LoginApp";
 import ChoiceCoursesApp from "@/pages/ChoiceCoursesApp";
+import PricesApp from "@/pages/PricesApp";
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     name: 'CoursesChildren',
     component: ChoiceCoursesApp,
     props: true,
+  },
+  {
+    path: '/prices',
+    name: 'prices',
+    component: PricesApp
   },
 ]
 
