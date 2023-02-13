@@ -1,10 +1,6 @@
 <template>
-  <navbarcom class="d-none d-lg-block bg-light bg-gradient">
-
-  </navbarcom>
-  <navbarmob class="d-lg-none bg-light bg-gradient">
-
-  </navbarmob>
+  <navbarcom class="d-none d-lg-block bg-light bg-gradient"></navbarcom>
+  <navbarmob class="d-lg-none bg-light bg-gradient"></navbarmob>
 </template>
 
 <script>

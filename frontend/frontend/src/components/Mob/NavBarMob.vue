@@ -23,11 +23,17 @@
           <ul class="list-button">
             <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/')">ГЛАВНАЯ</button></li>
             <hr>
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/courses')">КУРСЫ</button></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">КУРСЫ</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item first" href="#" @click.prevent="$router.push('/courses/speak')">Курс «Говори!»</a></li>
+                <li><a class="dropdown-item last" href="#" @click.prevent="$router.push('/courses/children')"><span>Для детей</span></a></li>
+              </ul>
+            </li>
             <hr>
             <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/prices')">СТОИМОСТЬ</button></li>
             <hr>
-            <li class="wrapper-button"><button type="button" class="choice-button">О НАС</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/about')">О НАС</button></li>
             <hr>
           </ul>
           <div class="phone mt-5 d-flex justify-content-center align-items-center">
@@ -108,6 +114,44 @@ export default {
   .list-button{
     padding: 0;
     width: 100%;
+  }
+  .dropdown{
+    list-style-type: none;
+    width: 100%;
+    padding-left: 6px;
+  }
+  .dropdown-menu{
+    height: 100px;
+    padding: 0;
+    width: 200px;
+  }
+  .dropdown-menu li{
+    height: 50%;
+  }
+  .dropdown-menu li:last-child{
+    border-top: 1px solid #e2e7f5;
+  }
+  .dropdown-item{
+    height: 100%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
+  .first:hover{
+    border-radius: 5px 5px 0 0;
+  }
+  .last:hover{
+    border-radius: 0 0 5px 5px;
+  }
+  .first:active{
+    background-color: rgba(156, 38, 50, 0.8);
+  }
+  .last:active{
+    background-color: rgba(156, 38, 50, 0.8);
+  }
+  .nav-link{
+    color: #1f1b1d;
+    font-weight: bold;
   }
   .wrapper-button{
     list-style-type: none;
