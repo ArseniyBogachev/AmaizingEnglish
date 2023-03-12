@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeApp from "@/pages/HomeApp";
-import CoursesApp from "@/pages/CoursesApp";
 import RegisterApp from "@/pages/RegisterApp";
 import LoginApp from "@/pages/LoginApp";
 import ChoiceCoursesApp from "@/pages/ChoiceCoursesApp";
@@ -12,11 +11,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeApp
-  },
-  {
-    path: '/courses',
-    name: 'courses',
-    component: CoursesApp
   },
   {
     path: '/register',

@@ -11,8 +11,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">КУРСЫ</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item first" href="#" @click.prevent="$router.push('/courses/speak')">Курс «Говори!»</a></li>
-                <li><a class="dropdown-item last" href="#" @click.prevent="$router.push('/courses/children')"><span>Для детей</span></a></li>
+                <li v-for="p in programms"><a class="dropdown-item first" href="#" @click.prevent="$router.push(`/courses/${p.link}`)">{{p.programm_name}}</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -40,7 +39,13 @@
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  props: {
+    programms: {
+      type: Array,
+      default: [],
+    }
+  }
 }
 </script>
 

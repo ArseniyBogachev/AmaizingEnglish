@@ -4,15 +4,19 @@
       :small_text="small_text"
       :button_text="button_text"
       :input="input"
+      @register="register"
   >
-    <myinput v-model="i.value.value" :title="i.title" v-for="i in input"></myinput>
+    <myinput v-model="i.value.value" :title="i.title" v-for="i in input" :typeInput="i.typeInput"></myinput>
   </MyAuthAndRegister>
 </template>
 
 <script>
+
 import myinput from "@/components/UI/MyInput";
 import MyAuthAndRegister from "@/components/UI/MyAuthAndRegister";
 import {ref} from "vue";
+import axios from "axios";
+
 export default {
   name: "LoginApp",
   components: {
@@ -21,18 +25,41 @@ export default {
   },
   setup(){
     const input = [
-      {title: 'Firstname', value: ref('')},
-      {title: 'Lastname', value: ref('')},
-      {title: 'E-mail', value: ref('')},
-      {title: 'Password', value: ref('')},
-      {title: 'Confirm password', value: ref('')},
+      {title: 'Login', value: ref(''), typeInput: 'text',},
+      {title: 'Firstname', value: ref(''), typeInput: 'text',},
+      {title: 'Lastname', value: ref(''), typeInput: 'text',},
+      {title: 'E-mail', value: ref(''), typeInput: 'text',},
+      {title: 'Age', value: ref(''), typeInput: 'text',},
+      {title: 'Password', value: ref(''), typeInput: 'password',},
+      {title: 'Confirm password', value: ref(''), typeInput: 'password',},
     ]
 
     const big_text = 'Регистрация'
     const small_text = 'Зарегестрируйтесь для покупки продукта доступного на сайте.'
     const button_text = 'Register'
 
-    return {input, big_text, small_text, button_text}
+    function register(){
+      try{
+        if (input[5].value.value === input[6].value.value){
+          const response = axios.post('http://127.0.0.1:8000/auth/users/', {
+            "username": input[0].value.value,
+            "first_name": input[1].value.value,
+            "last_name": input[2].value.value,
+            "email": input[3].value.value,
+            "age": input[4].value.value,
+            "password": input[5].value.value,
+          })
+        }
+        else{
+          console.log('Error Password!!!')
+        }
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+
+    return {input, big_text, small_text, button_text, register}
   }
 }
 </script>

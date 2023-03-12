@@ -4,7 +4,7 @@
       <h5 class="big-text">{{ big_text }}</h5>
       <slot></slot>
       <small class="small-text">{{ small_text }}</small>
-      <button type="button" class="btn btn-success" @click="$emit('useTest')">{{ button_text }}</button>
+      <button type="button" class="btn btn-success" @click="$emit('register')">{{ button_text }}</button>
     </div>
   </div>
 </template>

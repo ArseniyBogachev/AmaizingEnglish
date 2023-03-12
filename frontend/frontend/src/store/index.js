@@ -1,14 +1,10 @@
 import { createStore } from 'vuex'
+import {getData} from "@/store/modules/getData";
+import {postData} from "@/store/modules/postData";
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    getData: getData,
+    postData: postData,
   }
 })

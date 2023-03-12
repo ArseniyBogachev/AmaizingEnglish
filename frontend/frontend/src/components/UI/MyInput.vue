@@ -2,7 +2,7 @@
   <div class="input-group mb-3">
     <span class="input-group-text" id="inputGroup-sizing-default">{{ title }}</span>
     <input
-        type="text"
+        :type="typeInput"
         class="form-control"
         aria-label="Sizing example input"
         aria-describedby="inputGroup-sizing-default"
@@ -23,6 +23,10 @@ export default{
     modelValue: {
       type: String,
     },
+    typeInput: {
+      type: String,
+      default: 'text'
+    }
   },
   setup(props, { emit }){
     const onInput = (value) => {

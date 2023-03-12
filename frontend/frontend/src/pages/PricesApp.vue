@@ -3,21 +3,21 @@
   <div class="main">
     <div class="wrapper-block" v-for="price in prices">
       <div class="header-block rounded-5 mt-3">
-        <span class="text-header">{{ price.headerText }}</span>
+        <span class="text-header">{{ price.title }}</span>
       </div>
       <div class="body-block">
-        <p class="description-body">{{ price.descriptionBody }}</p>
+        <p class="description-body">{{ price.description }}</p>
         <hr>
-        <div class="text-body" v-for="text in price.textBody">
+        <div class="text-body" v-for="text in price.list_type_class">
           <p class="title-text">{{ text.title }}</p>
-          <div class="content-text" v-for="lesson in text.text">
-            <p>{{lesson.countHours}}</p>
-            <p>{{lesson.priceLessons}}</p>
+          <div class="content-text" v-for="lesson in text.list_type_courses">
+            <p>{{lesson.title}} ({{lesson.count_lessons}} академических часов)</p>
+            <p>-{{lesson.discount}}% = {{lesson.full_price}} руб.</p>
           </div>
         </div>
         <div class="additional-block">
           <p class="info-additional">*1 академический час = 45 минут</p>
-          <p class="text-additional" v-if="price.additionalText">{{ price.additionalText }}</p>
+          <p class="text-additional" v-if="price.additional">{{ price.additional }}</p>
         </div>
 
       </div>
@@ -30,106 +30,122 @@
 </template>
 
 <script>
+
 import MyBackground from "@/components/UI/MyBackground";
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
   name: "PricesApp",
   components: {
     MyBackground
   },
-  setup(){
-    const prices = [
-      {
-        headerText: '«Говори!»',
-        descriptionBody: 'Продолжительность курса - 4 месяца',
-        additionalText: 'Запишись на курс до 31.03.2023 и получи ДОПОЛНИТЕЛЬНУЮ СКИДКУ -10%',
-        textBody: [
-          {
-            title: 'Индивидуальные занятия',
-            text: [
-              {countHours: '1 занятие', priceLessons: '1 100 руб. за академический час'},
-              {countHours: '1 месяц (12 академических часов)', priceLessons: '-10% = 7 920 руб'},
-              {countHours: '1 курс (48 академических часов)', priceLessons: '-15% = 30 192 руб'},
-            ]
-          },
-          {
-            title: 'Групповые занятия (от 3 до 4 чел.)',
-            text: [
-              {countHours: '1 занятие', priceLessons: '800 руб. за академический час'},
-              {countHours: '1 месяц (12 академических часов)', priceLessons: '-10% = 5 120 руб'},
-              {countHours: '1 курс (48 академических часов)', priceLessons: '-15% = 21 760 руб'},
-            ]
-          },
-        ]
-      },
-      {
-        headerText: '«Говори!» для детей',
-        descriptionBody: 'Продолжительность курса - 4 месяца',
-        additionalText: 'Запишись на курс до 31.03.2023 и получи ДОПОЛНИТЕЛЬНУЮ СКИДКУ -10%',
-        textBody: [
-          {
-            title: 'Индивидуальные занятия',
-            text: [
-              {countHours: '1 занятие', priceLessons: '1 100 руб. за академический час'},
-              {countHours: '1 месяц (12 академических часов)', priceLessons: '-15% = 7 548 руб'},
-              {countHours: '1 курс (48 академических часов)', priceLessons: '-20% = 28 416 руб'},
-            ]
-          },
-          {
-            title: 'Групповые занятия (от 3 до 4 чел.)',
-            text: [
-              {countHours: '1 занятие', priceLessons: '600 руб. за академический час'},
-              {countHours: '1 месяц (12 академических часов)', priceLessons: '-15% = 5 440  руб'},
-              {countHours: '1 курс (48 академических часов)', priceLessons: '-20% = 20 480 руб'},
-            ]
-          },
-        ]
-      },
-      {
-        headerText: '«Для детей»',
-        descriptionBody: 'Общий курс для детей разного возраста и уровня, который включает все аспекты языка и учитывает школьную программу',
-        additionalText: '',
-        textBody: [
-          {
-            title: 'Индивидуальные занятия',
-            text: [
-              {countHours: '1 занятие', priceLessons: '1 200 руб. за академический час'},
-              {countHours: '1 месяц (12 академических часов)', priceLessons: '-30% = 8 640 руб'},
-              {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 30 720 руб'},
-              {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 53 760 руб'},
-            ]
-          },
-          {
-            title: '7-9 лет (от 3 до 6 человек)',
-            text: [
-              {countHours: '1 занятие', priceLessons: '500 руб. за академический час'},
-              {countHours: '1 месяц - (8 занятий по 50 мин)', priceLessons: '-10% = 3 600 руб'},
-              {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 12 800 руб'},
-              {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 22 400 руб'},
-            ]
-          },
-          {
-            title: '10-12 лет (от 3 до 6 человек)',
-            text: [
-              {countHours: '1 занятие', priceLessons: '600 руб. за 60 мин'},
-              {countHours: '1 месяц (8 занятий по 60 мин)', priceLessons: '-10% = 4 320 руб'},
-              {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 15 360 руб'},
-              {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 26 880 руб'},
-            ]
-          },
-          {
-            title: '13-18 лет (от 3 до 6 человек)',
-            text: [
-              {countHours: '1 занятие', priceLessons: '700 руб. за 80 мин'},
-              {countHours: '1 месяц (8 занятий по 80 мин)', priceLessons: '-10% = 5 040 руб'},
-              {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 17 920 руб'},
-              {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 31 160'},
-            ]
-          },
-        ]
-      },
-    ]
-    return {prices}
+  computed: {
+    ...mapGetters({
+      prices: 'prices',
+    }),
   },
+  methods: {
+    ...mapActions({
+      prices_data: 'prices_data',
+    }),
+  },
+  created(){
+    this.prices_data()
+  }
+  // setup(){
+  //   const prices = [
+  //     {
+  //       headerText: '«Говори!»',
+  //       descriptionBody: 'Продолжительность курса - 4 месяца',
+  //       additionalText: 'Запишись на курс до 31.03.2023 и получи ДОПОЛНИТЕЛЬНУЮ СКИДКУ -10%',
+  //       textBody: [
+  //         {
+  //           title: 'Индивидуальные занятия',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '1 100 руб. за академический час'},
+  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-10% = 7 920 руб'},
+  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-15% = 30 192 руб'},
+  //           ]
+  //         },
+  //         {
+  //           title: 'Групповые занятия (от 3 до 4 чел.)',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '800 руб. за академический час'},
+  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-10% = 5 120 руб'},
+  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-15% = 21 760 руб'},
+  //           ]
+  //         },
+  //       ]
+  //     },
+  //     {
+  //       headerText: '«Говори!» для детей',
+  //       descriptionBody: 'Продолжительность курса - 4 месяца',
+  //       additionalText: 'Запишись на курс до 31.03.2023 и получи ДОПОЛНИТЕЛЬНУЮ СКИДКУ -10%',
+  //       textBody: [
+  //         {
+  //           title: 'Индивидуальные занятия',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '1 100 руб. за академический час'},
+  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-15% = 7 548 руб'},
+  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-20% = 28 416 руб'},
+  //           ]
+  //         },
+  //         {
+  //           title: 'Групповые занятия (от 3 до 4 чел.)',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '600 руб. за академический час'},
+  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-15% = 5 440  руб'},
+  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-20% = 20 480 руб'},
+  //           ]
+  //         },
+  //       ]
+  //     },
+  //     {
+  //       headerText: '«Для детей»',
+  //       descriptionBody: 'Общий курс для детей разного возраста и уровня, который включает все аспекты языка и учитывает школьную программу',
+  //       additionalText: '',
+  //       textBody: [
+  //         {
+  //           title: 'Индивидуальные занятия',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '1 200 руб. за академический час'},
+  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-30% = 8 640 руб'},
+  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 30 720 руб'},
+  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 53 760 руб'},
+  //           ]
+  //         },
+  //         {
+  //           title: '7-9 лет (от 3 до 6 человек)',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '500 руб. за академический час'},
+  //             {countHours: '1 месяц - (8 занятий по 50 мин)', priceLessons: '-10% = 3 600 руб'},
+  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 12 800 руб'},
+  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 22 400 руб'},
+  //           ]
+  //         },
+  //         {
+  //           title: '10-12 лет (от 3 до 6 человек)',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '600 руб. за 60 мин'},
+  //             {countHours: '1 месяц (8 занятий по 60 мин)', priceLessons: '-10% = 4 320 руб'},
+  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 15 360 руб'},
+  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 26 880 руб'},
+  //           ]
+  //         },
+  //         {
+  //           title: '13-18 лет (от 3 до 6 человек)',
+  //           text: [
+  //             {countHours: '1 занятие', priceLessons: '700 руб. за 80 мин'},
+  //             {countHours: '1 месяц (8 занятий по 80 мин)', priceLessons: '-10% = 5 040 руб'},
+  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 17 920 руб'},
+  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 31 160'},
+  //           ]
+  //         },
+  //       ]
+  //     },
+  //   ]
+  //   return {prices}
+  // },
 }
 </script>
 
