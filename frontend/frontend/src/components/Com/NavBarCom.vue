@@ -11,7 +11,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">КУРСЫ</a>
               <ul class="dropdown-menu">
-                <li v-for="p in programms"><a class="dropdown-item first" href="#" @click.prevent="$router.push(`/courses/${p.link}`)">{{p.programm_name}}</a></li>
+                <li v-for="p in programms"><a class="dropdown-item" href="#" @click.prevent="$router.push(`/courses/${p.link}`)">{{p.programm_name}}</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -23,7 +23,20 @@
           </ul>
         </div>
       </div>
-      <div class="d-flex">
+      <div class="user-block" v-if="this.$store.getters.verify">
+        <div class="wrapper-user">
+          <div class="btn-group dropstart">
+            <a class="user-link" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <fa icon="fa-solid fa-user" class="user-icon"/>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" @click.prevent="$router.push('/profile')">Мой профиль</a></li>
+              <li><a class="dropdown-item" href="#" @click="$emit('logout')">Выйти</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex" v-else>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="#" @click.prevent="$router.push('/login')">ВОЙТИ</a>
@@ -55,7 +68,6 @@ export default {
     width: 100%;
     box-shadow: 0 0 5px 1px black;
     z-index: 3;
-
   }
   .navbar{
     padding-right: 1%;
@@ -83,20 +95,32 @@ export default {
     display: flex;
     align-items: center;
   }
-  .first:hover{
-    border-radius: 5px 5px 0 0;
-  }
-  .last:hover{
-    border-radius: 0 0 5px 5px;
-  }
-  .first:active{
+  .dropdown-item:active{
     background-color: rgba(156, 38, 50, 0.8);
   }
-  .last:active{
-    background-color: rgba(156, 38, 50, 0.8);
+  .dropdown-item:hover{
+    border-radius: 5px;
   }
   .logo{
     width: 85px;
     height: 85px;
+  }
+
+  .user-block{
+
+  }
+  .wrapper-user{
+
+  }
+  .btn-group{
+
+  }
+  .user-link{
+    margin-right: 20px;
+  }
+  .user-icon{
+    color: #868686;
+    width: 20px;
+    height: 20px;
   }
 </style>

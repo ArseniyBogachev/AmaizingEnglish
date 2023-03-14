@@ -38,10 +38,10 @@ export default {
     const small_text = 'Зарегестрируйтесь для покупки продукта доступного на сайте.'
     const button_text = 'Register'
 
-    function register(){
+    async function register(){
       try{
         if (input[5].value.value === input[6].value.value){
-          const response = axios.post('http://127.0.0.1:8000/auth/users/', {
+          const response = await axios.post('http://127.0.0.1:8000/auth/users/', {
             "username": input[0].value.value,
             "first_name": input[1].value.value,
             "last_name": input[2].value.value,

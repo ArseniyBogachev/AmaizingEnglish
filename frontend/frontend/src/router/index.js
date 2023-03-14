@@ -5,6 +5,7 @@ import LoginApp from "@/pages/LoginApp";
 import ChoiceCoursesApp from "@/pages/ChoiceCoursesApp";
 import PricesApp from "@/pages/PricesApp";
 import AboutApp from "@/pages/AboutApp";
+import ProfileApp from "@/pages/ProfileApp";
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: AboutApp
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfileApp
   },
 ]
 

@@ -7,9 +7,11 @@
 </template>
 
 <script>
+
 import reviewscom from "@/components/ReviewsContent";
 import imagecom from "@/components/Com/ImageAndOffCanvasCom";
 import imagemob from "@/components/Mob/ImageAndOffCanvasMob";
+
 export default {
   name: "HomeApp",
   components:{

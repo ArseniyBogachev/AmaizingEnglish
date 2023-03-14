@@ -49,3 +49,18 @@ class TypePriceSerializer(serializers.ModelSerializer):
         result = (instance.count_lessons * instance.price // 100) * (100 - instance.discount)
         return result
 
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Users
+        fields = ('first_name', 'last_name', 'dob', 'email', 'programm', 'price')
+
+
+class BlackListJWTSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = BlackListJWT
+        fields = "__all__"
+

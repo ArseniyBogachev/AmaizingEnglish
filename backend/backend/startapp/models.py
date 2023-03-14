@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator
 from django.db import models
@@ -6,15 +7,15 @@ from django.db import models
 class Users(AbstractUser):
     first_name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=10)
-    age = models.IntegerField()
+    dob = models.DateField(default=date.today)
     email = models.EmailField(unique=True)
     programm = models.ForeignKey('Programms', on_delete=models.PROTECT, null=True, blank=True)
     price = models.ForeignKey('PriceCourses', on_delete=models.PROTECT, null=True, blank=True)
 
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'age']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'dob']
 
     def __str__(self):
-        return self.last_name
+        return self.username
 
 
 class Programms(models.Model):
@@ -55,7 +56,7 @@ class TypeClass(models.Model):
 
 class TypePrice(models.Model):
     title = models.CharField(max_length=50)
-    count_lessons = models.PositiveIntegerField()
+    count_lessons = models.PositiveIntegerField(null=True, blank=True)
     price = models.PositiveIntegerField()
     discount = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(100)])
     """добавить поле time_lesson (за академический час/за 60 мин)"""
@@ -63,5 +64,10 @@ class TypePrice(models.Model):
 
     def __str__(self):
         return f'{self.title} тип: {self.type_class}'
+
+
+class BlackListJWT(models.Model):
+    token = models.CharField(max_length=500)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
 
 # Create your models here.

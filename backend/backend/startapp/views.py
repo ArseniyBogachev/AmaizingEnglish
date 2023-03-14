@@ -22,4 +22,17 @@ class ListPricesAPI(generics.ListAPIView):
     queryset = PriceCourses.objects.all().order_by('id')
     serializer_class = PricesCoursesSerializer
 
+
+class ObjectUserApi(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        obj = Users.objects.get(username=self.request.user)
+        return obj
+
+
+class BlackListAddJWT(generics.CreateAPIView):
+    queryset = BlackListJWT.objects.all()
+    serializer_class = BlackListJWTSerializer
+
 # Create your views here.
