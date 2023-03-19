@@ -2,6 +2,8 @@ import axios from 'axios'
 
 export const authUser = {
     state: () => ({
+        programm_error: {},
+        price_error: {},
         verify: false,
         user: {},
     }),
@@ -12,6 +14,12 @@ export const authUser = {
         user(state){
             return state.user
         },
+        programm_error(state){
+            return state.programm_error
+        },
+        price_error(state){
+            return state.price_error
+        },
     },
     mutations:{
         updateVerify(state, verify){
@@ -19,6 +27,12 @@ export const authUser = {
         },
         updateUser(state, user){
             state.user = user
+        },
+        programmErrorUpdate(state, error){
+            state.programm_error = error
+        },
+        priceErrorUpdate(state, error){
+            state.price_error = error
         },
     },
     actions: {
@@ -50,6 +64,31 @@ export const authUser = {
             try{
                 const response = await axios.get('http://127.0.0.1:8000/api/v1/user/', {headers: {"Authorization" : `Bearer ${localStorage.getItem('access')}`}})
                 ctx.commit('updateUser', response.data)
+            }
+            catch (e) {
+                console.log(e)
+            }
+        },
+        async user_courses_update(ctx, data){
+            try{
+                if (data.programm !== 'Default' && data.price !== 'Default'){
+                    const response = await axios.patch('http://127.0.0.1:8000/api/v1/usercoursesupdate/',
+                        {'programm': data.programm, 'price': data.price},
+                        {headers: {"Authorization" : `Bearer ${localStorage.getItem('access')}`}}
+                    )
+                    ctx.commit('updateUser', response.data)
+                    ctx.commit('priceErrorUpdate', {})
+                    ctx.commit('programmErrorUpdate', {})
+                    location.reload()
+                }
+                else{
+                    if (data.programm === 'Default'){
+                        ctx.commit('programmErrorUpdate', {border: '1px solid #9c2632'})
+                    }
+                    if (data.price === 'Default'){
+                        ctx.commit('priceErrorUpdate', {border: '1px solid #9c2632'})
+                    }
+                }
             }
             catch (e) {
                 console.log(e)

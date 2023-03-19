@@ -5,6 +5,7 @@
   ></navbarcom>
   <navbarmob class="d-lg-none bg-light bg-gradient"
              :programms="programms"
+             @logout="logout"
   ></navbarmob>
 </template>
 

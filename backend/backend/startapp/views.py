@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from .permissions import *
 from .serializers import *
 from .models import *
 
@@ -23,8 +25,18 @@ class ListPricesAPI(generics.ListAPIView):
     serializer_class = PricesCoursesSerializer
 
 
-class ObjectUserApi(generics.RetrieveAPIView):
+class ObjectUserAPI(generics.RetrieveAPIView):
     serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self):
+        obj = Users.objects.get(username=self.request.user)
+        return obj
+
+
+class UserCoursesUpdateAPI(generics.UpdateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated, IsUserProgrammPrice)
 
     def get_object(self):
         obj = Users.objects.get(username=self.request.user)

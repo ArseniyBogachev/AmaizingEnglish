@@ -10,8 +10,12 @@
         <hr>
         <div class="text-body" v-for="text in price.list_type_class">
           <p class="title-text">{{ text.title }}</p>
-          <div class="content-text" v-for="lesson in text.list_type_courses">
+          <div class="content-text" v-if="text.time_lesson === 45" v-for="lesson in text.list_type_courses">
             <p>{{lesson.title}} ({{lesson.count_lessons}} академических часов)</p>
+            <p>-{{lesson.discount}}% = {{lesson.full_price}} руб.</p>
+          </div>
+          <div class="content-text" v-else v-for="lesson in text.list_type_courses">
+            <p>{{lesson.title}} ({{lesson.count_lessons}} уроков {{ text.annotate_time_lesson }})</p>
             <p>-{{lesson.discount}}% = {{lesson.full_price}} руб.</p>
           </div>
         </div>
@@ -23,7 +27,49 @@
       </div>
       <div class="footer-block">
         <hr>
-        <button type="button" class="button-footer mt-3 rounded-5">Записаться на курс</button>
+        <button type="button" class="button-modal button-footer mt-3 rounded-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                @click="this.selected_courses = 'Default'; this.selected_prices = 'Default'; this.radioActive = 'Индивидуальные'; this.programm = price.type_programm; priceTitle = price.title; uploadData()">Записаться на курс</button>
+      </div>
+
+      <div class="modal fade h-100 w-100" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span>Оформите заказ</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div class="radio-block">
+                  <div class="radio-class-block">
+                    <input type="radio" value="Индивидуальные" v-model="radioActive" @change="uploadData(); this.selected_courses = 'Default'; this.selected_prices = 'Default';">
+                    <label>Индивидуальные занятия</label>
+                    <br>
+                    <input type="radio" value="Групповые" v-model="radioActive" @change="uploadData(); this.selected_courses = 'Default'; this.selected_prices = 'Default';">
+                    <label>Групповые занятия</label>
+                    <br>
+                  </div>
+                </div>
+
+
+                <select class="form-select" aria-label=".form-select-lg example"
+                        v-model="selected_courses"
+                        @change="uploadData()"
+                        :style="programm_error">
+                  <option class="options-style" v-for="c in options_courses" :value="c.value">{{c.name}}</option>
+                </select>
+
+                <select class="form-select" aria-label=".form-select-lg example"
+                        v-model="selected_prices"
+                        v-if="radioActive === 'Индивидуальные' || (radioActive === 'Групповые' && selected_courses !== 'Default')"
+                        :style="price_error">
+                  <option class="options-style" v-for="p in options_prices" :value="p.value">{{p.name}}</option>
+                </select>
+
+                <button type="button" class="button-footer mt-3 rounded-5" @click="user_courses_update({programm: selected_courses, price: selected_prices})">Оплатить</button>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
@@ -32,132 +78,64 @@
 <script>
 
 import MyBackground from "@/components/UI/MyBackground";
-import {mapGetters, mapActions} from 'vuex'
+import MyInput from "@/components/UI/MyInput";
+import { ref } from 'vue'
+import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 export default {
   name: "PricesApp",
   components: {
-    MyBackground
+    MyBackground,
+    MyInput,
+  },
+  data(){
+    return {
+      radioActive: 'Индивидуальные',
+      programm: '',
+      priceTitle: '',
+      selected_courses: 'Default',
+      selected_prices: 'Default',
+    }
   },
   computed: {
     ...mapGetters({
       prices: 'prices',
+      courses: 'courses',
+      programms: 'programms',
+      options_courses: 'options_courses',
+      options_prices: 'options_prices',
+      programm_error: 'programm_error',
+      price_error: 'price_error',
     }),
   },
   methods: {
+    ...mapMutations({
+      updateOptionsCourses: 'updateOptionsCourses',
+      updateOptionsPrices: 'updateOptionsPrices',
+    }),
     ...mapActions({
       prices_data: 'prices_data',
+      courses_data: 'courses_data',
+      user_courses_update: 'user_courses_update',
     }),
+    async uploadData(){
+      let programm_link = this.programms.find((item) => item.programm_name === this.programm)
+      await this.courses_data(programm_link.link)
+      await this.updateOptionsCourses()
+      await this.updateOptionsPrices({
+        priceTitle: this.priceTitle,
+        typeClass: this.radioActive,
+        selectedCourses: this.selected_courses
+      })
+    }
   },
   created(){
     this.prices_data()
-  }
-  // setup(){
-  //   const prices = [
-  //     {
-  //       headerText: '«Говори!»',
-  //       descriptionBody: 'Продолжительность курса - 4 месяца',
-  //       additionalText: 'Запишись на курс до 31.03.2023 и получи ДОПОЛНИТЕЛЬНУЮ СКИДКУ -10%',
-  //       textBody: [
-  //         {
-  //           title: 'Индивидуальные занятия',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '1 100 руб. за академический час'},
-  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-10% = 7 920 руб'},
-  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-15% = 30 192 руб'},
-  //           ]
-  //         },
-  //         {
-  //           title: 'Групповые занятия (от 3 до 4 чел.)',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '800 руб. за академический час'},
-  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-10% = 5 120 руб'},
-  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-15% = 21 760 руб'},
-  //           ]
-  //         },
-  //       ]
-  //     },
-  //     {
-  //       headerText: '«Говори!» для детей',
-  //       descriptionBody: 'Продолжительность курса - 4 месяца',
-  //       additionalText: 'Запишись на курс до 31.03.2023 и получи ДОПОЛНИТЕЛЬНУЮ СКИДКУ -10%',
-  //       textBody: [
-  //         {
-  //           title: 'Индивидуальные занятия',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '1 100 руб. за академический час'},
-  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-15% = 7 548 руб'},
-  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-20% = 28 416 руб'},
-  //           ]
-  //         },
-  //         {
-  //           title: 'Групповые занятия (от 3 до 4 чел.)',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '600 руб. за академический час'},
-  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-15% = 5 440  руб'},
-  //             {countHours: '1 курс (48 академических часов)', priceLessons: '-20% = 20 480 руб'},
-  //           ]
-  //         },
-  //       ]
-  //     },
-  //     {
-  //       headerText: '«Для детей»',
-  //       descriptionBody: 'Общий курс для детей разного возраста и уровня, который включает все аспекты языка и учитывает школьную программу',
-  //       additionalText: '',
-  //       textBody: [
-  //         {
-  //           title: 'Индивидуальные занятия',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '1 200 руб. за академический час'},
-  //             {countHours: '1 месяц (12 академических часов)', priceLessons: '-30% = 8 640 руб'},
-  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 30 720 руб'},
-  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 53 760 руб'},
-  //           ]
-  //         },
-  //         {
-  //           title: '7-9 лет (от 3 до 6 человек)',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '500 руб. за академический час'},
-  //             {countHours: '1 месяц - (8 занятий по 50 мин)', priceLessons: '-10% = 3 600 руб'},
-  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 12 800 руб'},
-  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 22 400 руб'},
-  //           ]
-  //         },
-  //         {
-  //           title: '10-12 лет (от 3 до 6 человек)',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '600 руб. за 60 мин'},
-  //             {countHours: '1 месяц (8 занятий по 60 мин)', priceLessons: '-10% = 4 320 руб'},
-  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 15 360 руб'},
-  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 26 880 руб'},
-  //           ]
-  //         },
-  //         {
-  //           title: '13-18 лет (от 3 до 6 человек)',
-  //           text: [
-  //             {countHours: '1 занятие', priceLessons: '700 руб. за 80 мин'},
-  //             {countHours: '1 месяц (8 занятий по 80 мин)', priceLessons: '-10% = 5 040 руб'},
-  //             {countHours: '4 месяца (32 академических часа)', priceLessons: '-20% = 17 920 руб'},
-  //             {countHours: '8 месяцев (64 академических часа)', priceLessons: '-30% = 31 160'},
-  //           ]
-  //         },
-  //       ]
-  //     },
-  //   ]
-  //   return {prices}
-  // },
+  },
 }
 </script>
 
 <style scoped>
-  .img-fluid{
-    position: fixed;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    filter: brightness(20%);
-    object-fit: cover;
-  }
   .main{
     padding-bottom: 200px;
     display: flex;
@@ -238,6 +216,28 @@ export default {
   .button-footer:active{
     box-shadow: 0 0 5px 1px #930c0f inset;
   }
+
+  .radio-block{
+    display: flex;
+  }
+
+  .form-select{
+    max-height: 50px;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .form-select:active{
+    box-shadow: none;
+  }
+  .form-select:focus{
+    box-shadow: none;
+  }
+  .options-style{
+    background-color: #fff4f4;
+    color: #2e313f;
+  }
+
+
   @media (max-width: 1540px) {
     .wrapper-block{
       width: 400px;

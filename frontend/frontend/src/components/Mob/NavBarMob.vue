@@ -38,7 +38,12 @@
           <div class="phone mt-5 d-flex justify-content-center align-items-center">
             <h5 class="text-white">8(800)555-35-35</h5>
           </div>
-          <ul class="list-button mt-5">
+          <ul class="list-button mt-5" v-if="this.$store.getters.verify">
+            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/profile')">МОЯ СТРАНИЦА</button></li>
+            <hr>
+            <li class="wrapper-button"><button type="button" class="choice-button" @click="$emit('logout')">ВЫЙТИ</button></li>
+          </ul>
+          <ul class="list-button mt-5" v-else>
             <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/login')">ВОЙТИ</button></li>
             <hr>
             <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/register')">РЕГИСТРАЦИЯ</button></li>
