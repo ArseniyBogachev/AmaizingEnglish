@@ -30,19 +30,19 @@
 
                 <div class="radio-block">
                   <div class="radio-class-block">
-                    <input type="radio" value="Индивидуальные" v-model="radioClassActive" @change="uploadData(); this.selected_courses = 'Default'; this.selected_prices = 'Default';">
+                    <input type="radio" value="Индивидуальные" v-model="radioClassActive" @change="uploadData(); this.selected_prices = 'Default';">
                     <label>Индивидуальные занятия</label>
                     <br>
-                    <input type="radio" value="Групповые" v-model="radioClassActive" @change="uploadData(); this.selected_courses = 'Default'; this.selected_prices = 'Default';">
+                    <input type="radio" value="Групповые" v-model="radioClassActive" @change="uploadData(); this.selected_prices = 'Default';">
                     <label>Групповые занятия</label>
                     <br>
                   </div>
 
                   <div class="radio-age-block" v-if="slug === 'speak'">
-                    <input type="radio" value="«Говори!»" v-model="radioAgeActive" @change="uploadData(); this.selected_courses = 'Default'; this.selected_prices = 'Default';">
+                    <input type="radio" value="«Говори!»" v-model="radioAgeActive" @change="uploadData(); this.selected_prices = 'Default';">
                     <label>Для взрослых</label>
                     <br>
-                    <input type="radio" value="«Говори!» для детей" v-model="radioAgeActive" @change="uploadData(); this.selected_courses = 'Default'; this.selected_prices = 'Default';">
+                    <input type="radio" value="«Говори!» для детей" v-model="radioAgeActive" @change="uploadData(); this.selected_prices = 'Default';">
                     <label>Для детей</label>
                     <br>
                   </div>
@@ -57,7 +57,7 @@
 
                 <select class="form-select" aria-label=".form-select-lg example"
                         v-model="selected_prices"
-                        v-if="radioActive === 'Индивидуальные' || (radioActive === 'Групповые' && selected_courses !== 'Default')"
+                        v-if="radioClassActive === 'Индивидуальные' || (radioActive === 'Групповые' && selected_courses !== 'Default')"
                         :style="price_error">
                   <option class="options-style" v-for="p in options_prices" :value="p.value">{{p.name}}</option>
                 </select>
@@ -81,11 +81,13 @@
 
 import MyBackground from "@/components/UI/MyBackground";
 import {mapGetters, mapActions, mapMutations} from 'vuex'
+import MyModal from "@/components/UI/MyModal";
 
 export default {
   name: "CoursesChildrenApp",
   components: {
     MyBackground,
+    MyModal
   },
   data(){
     return {

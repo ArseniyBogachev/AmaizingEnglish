@@ -8,4 +8,5 @@ admin.site.register(PriceCourses)
 admin.site.register(TypeClass)
 admin.site.register(TypePrice)
 admin.site.register(BlackListJWT)
+admin.site.register(RecordConsultation)
 # Register your models here.

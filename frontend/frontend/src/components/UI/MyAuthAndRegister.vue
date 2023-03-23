@@ -4,8 +4,8 @@
       <h5 class="big-text">{{ big_text }}</h5>
       <slot></slot>
       <small class="small-text">{{ small_text }}</small>
-      <button v-if="button_text === 'Register'" type="button" class="btn btn-success" @click="$emit('register')">{{ button_text }}</button>
-      <button v-else type="button" class="btn btn-success" @click="$emit('login')">{{ button_text }}</button>
+      <span class="complete-text" v-if="CompleteAuthAndRegister">{{CompleteAuthAndRegister}}</span>
+      <button type="button" class="btn btn-success" @click="$emit(`${funcName}`)">{{ button_text }}</button>
     </div>
   </div>
 </template>
@@ -30,6 +30,13 @@ export default {
     input:{
       type: String,
     },
+    funcName: {
+      type: String,
+    },
+    CompleteAuthAndRegister: {
+      type: String,
+      default: '',
+    }
   }
 }
 </script>
@@ -58,13 +65,17 @@ export default {
     text-align: center;
     font-size: 30px;
     color: #1f1b1d;
-    /*font-weight: lighter;*/
   }
   .small-text{
     display: block;
     font-size: 11px;
     color: #757173;
     padding-bottom: 70px;
+  }
+  .complete-text{
+    position: absolute;
+    bottom: 40px;
+    color: #2ca016;
   }
   .btn{
     border: 1px solid #979395;

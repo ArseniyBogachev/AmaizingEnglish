@@ -22,61 +22,78 @@
             <h2 class="text-body mt-4">Записаться <br> на онлайн <br> консультацию.</h2>
 
             <form action="" style="margin-top: 25%">
-              <myinput v-model="firstname" :title="title.firstname"></myinput>
-              <myinput v-model="lastname" :title="title.lastname"></myinput>
-              <myinput v-model="email" :title="title.email"></myinput>
-              <myinput v-model="phone" :title="title.phone"></myinput>
-              <mytextarea v-model="message" :title="textarea.message"></mytextarea>
+              <myinput
+                  v-model="firstname.value.value"
+                  :title="title.firstname"
+                  :maxLength="firstname.maxLenght"
+                  :styleError="firstname.styleError.value"
+              ></myinput>
+              <myinput
+                  v-model="lastname.value.value"
+                  :title="title.lastname"
+                  :maxLength="lastname.maxLenght"
+                  :styleError="lastname.styleError.value"
+              ></myinput>
+              <myinput
+                  v-model="email.value.value"
+                  :title="title.email"
+                  :maxLength="email.maxLenght"
+                  :styleError="email.styleError.value"
+              ></myinput>
+              <myinput
+                  v-model="phone.value.value"
+                  :title="title.phone"
+                  :maxLength="phone.maxLenght"
+                  :styleError="phone.styleError.value"
+                  :minLength="phone.minLength"
+              ></myinput>
+              <mytextarea
+                  v-model="message.value.value"
+                  :title="textarea.message"
+                  :maxLength="message.maxLenght"
+              ></mytextarea>
             </form>
 
             <div class="form-check" style="margin-top: 25%">
               <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
               <h6 class="form-check-label">
-                Согласие с политикой конфиденциальности.
-                <button type="button" class="button-modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                  Посмотреть
+                Нажимая на кнопку, вы даете согласие на
+                <button type="button" class="button-modal" data-bs-toggle="modal" data-bs-target="#Document">
+                  обработку персональных данных
+                </button>
+                и соглашаетесь с
+                <button type="button" class="button-modal" data-bs-toggle="modal" data-bs-target="#Document">
+                  политикой конфиденциальности
                 </button>
               </h6>
             </div>
-            <button type="button" class="form-send w-100 mt-3" @click="useTest([firstname, lastname, email, phone, message])">ЗАПИСЬ</button>
+            <button type="button" class="form-send w-100 mt-3" @click="consultationPost();">ЗАПИСЬ</button>
           </div>
         </div>
 
-        <div class="modal fade h-100 w-100" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <img class="w-100 h-100" src="../../assets/document.png" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
+        <MyModal :filePath="filePath"></MyModal>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 import myinput from "@/components/UI/MyInput";
 import mytextarea from "@/components/UI/MyTextArea";
+import MyModal from "@/components/UI/MyModal";
+import { lstDocument } from "@/hooks/staticFileName";
+import { postData } from "@/hooks/useRecordConsultation";
 import {ref} from "vue";
-import {useTest} from "@/hooks/useTest";
+
 export default {
   name: "ImageAndOffCanvasCom",
   components: {
     myinput,
     mytextarea,
+    MyModal,
   },
   setup(){
-    const firstname = ref('')
-    const lastname = ref('')
-    const email = ref('')
-    const phone = ref('')
-    const message = ref('')
-
     const title = {
       firstname: 'First name',
       lastname: 'Last name',
@@ -88,7 +105,11 @@ export default {
       message: 'Addition'
     }
 
-    return {title, textarea, firstname, lastname, email, phone, message, useTest}
+    const { filePath } = lstDocument()
+
+    const {status, firstname, lastname, email, phone, message, consultationPost} = postData()
+
+    return {title, textarea, firstname, lastname, email, phone, message, filePath, consultationPost, status}
   }
 }
 </script>

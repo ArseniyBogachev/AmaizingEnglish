@@ -7,6 +7,9 @@
         aria-label="Sizing example input"
         aria-describedby="inputGroup-sizing-default"
         :value="modelValue"
+        :maxlength="maxLength"
+        :style="styleError"
+        :minlength="minLength"
         @input="onInput($event.target.value)"
     >
   </div>
@@ -25,8 +28,20 @@ export default{
     },
     typeInput: {
       type: String,
-      default: 'text'
-    }
+      default: 'text',
+    },
+    maxLength: {
+      type: String,
+      default: '2000',
+    },
+    styleError: {
+      type: String,
+      default: {},
+    },
+    minLength: {
+      type: String,
+      default: '0',
+    },
   },
   setup(props, { emit }){
     const onInput = (value) => {

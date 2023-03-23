@@ -4,6 +4,7 @@
       :small_text="small_text"
       :button_text="button_text"
       :input="input"
+      :funcName="funcName"
       @login="login"
   >
     <myinput v-model="i.value.value" :title="i.title" v-for="i in input" :typeInput="i.typeInput"></myinput>
@@ -30,13 +31,14 @@ export default {
     const store = useStore()
 
     const input = [
-      {title: 'Login', value: ref(''), typeInput: 'text',},
-      {title: 'Password', value: ref(''), typeInput: 'password',}
+      {title: 'Логин', value: ref(''), typeInput: 'text',},
+      {title: 'Пароль', value: ref(''), typeInput: 'password',}
     ]
 
     const big_text = 'Авторизация'
     const small_text = 'Авторизируйтесь для покупки продукта доступного на сайте.'
     const button_text = 'Login'
+    const funcName = 'login'
 
     async function login(){
       try{
@@ -59,7 +61,7 @@ export default {
       }
     }
 
-    return {input, big_text, small_text, button_text, login}
+    return {input, big_text, small_text, button_text, funcName, login}
   }
 }
 </script>

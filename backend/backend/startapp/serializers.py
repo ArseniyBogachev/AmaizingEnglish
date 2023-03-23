@@ -84,3 +84,10 @@ class BlackListJWTSerializer(serializers.ModelSerializer):
         model = BlackListJWT
         fields = "__all__"
 
+
+class RecordConsultationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = RecordConsultation
+        fields = '__all__'
+

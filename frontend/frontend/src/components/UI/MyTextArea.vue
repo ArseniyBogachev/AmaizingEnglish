@@ -5,8 +5,9 @@
         class="form-control"
         aria-label="message"
         :value="modelValue"
-        @input="onTextArea($event.target.value)">
-    </textarea>
+        @input="onTextArea($event.target.value)"
+        :maxlength=maxLength
+    ></textarea>
     <button class="btn btn-secondary" type="button" id="button-addon2" @click="onRemove">
       <fa icon="fa-solid fa-delete-left" />
     </button>
@@ -22,6 +23,10 @@ export default {
     },
     modelValue: {
       type: String,
+    },
+    maxLength: {
+      type: String,
+      default: '2000',
     },
   },
   setup(props, { emit }){

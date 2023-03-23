@@ -39,7 +39,7 @@ export default {
   }
   .foo-ter{
     position: absolute;
-    bottom: 0;
+    bottom: -500px;
     width: 100%;
   }
 </style>
