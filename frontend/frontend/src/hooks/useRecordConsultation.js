@@ -14,7 +14,7 @@ export function postData() {
 
         try {
             if (firstname.value.value && lastname.value.value && email.value.value) {
-                const response = await axios.post('http://127.0.0.1:8000/api/v1/recordconsultationcreate/', {
+                const response = await axios.post(`${process.env.VUE_APP_URL}/api/v1/recordconsultationcreate/`, {
                     'first_name': firstname.value.value,
                     'last_name': lastname.value.value,
                     'email': email.value.value,

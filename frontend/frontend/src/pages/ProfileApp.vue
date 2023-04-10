@@ -27,7 +27,6 @@ export default {
   },
   mounted(){
     this.user_data()
-    console.log('3')
   }
 }
 </script>

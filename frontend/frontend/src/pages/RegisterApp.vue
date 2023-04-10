@@ -45,7 +45,7 @@ export default {
     async function register(){
       try{
         if (input[5].value.value === input[6].value.value){
-          const response = await axios.post('http://127.0.0.1:8000/auth/users/', {
+          const response = await axios.post(`${process.env.VUE_APP_URL}/auth/users/`, {
             "username": input[0].value.value,
             "first_name": input[1].value.value,
             "last_name": input[2].value.value,

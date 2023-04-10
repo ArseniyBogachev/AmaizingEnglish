@@ -43,7 +43,7 @@ export default {
     async function login(){
       try{
         if (input[0].value.value && input[1].value.value){
-          const response = await axios.post('http://127.0.0.1:8000/api/token/', {
+          const response = await axios.post(`${process.env.VUE_APP_URL}/api/token/`, {
             "username": input[0].value.value,
             "password": input[1].value.value,
           })

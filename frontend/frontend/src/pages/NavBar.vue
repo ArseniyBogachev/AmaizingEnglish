@@ -35,7 +35,7 @@ export default {
       updateVerify: 'updateVerify',
     }),
     async logout(){
-      await axios.post('http://127.0.0.1:8000/api/v1/blacklist/', {'token': localStorage.getItem('access')}, {headers: {"Authorization" : `Bearer ${localStorage.getItem('access')}`}})
+      await axios.post(`${process.env.VUE_APP_URL}/api/v1/blacklist/`, {'token': localStorage.getItem('access')}, {headers: {"Authorization" : `Bearer ${localStorage.getItem('access')}`}})
       await localStorage.removeItem("access");
       await localStorage.removeItem("refresh");
       await this.updateVerify(false)

@@ -71,7 +71,7 @@ export const getData = {
     actions: {
         async programms_data(ctx){
             try{
-                const response = await axios.get(`http://127.0.0.1:8000/api/v1/listprogramms/`)
+                const response = await axios.get(`${process.env.VUE_APP_URL}/api/v1/listprogramms/`)
                 await ctx.commit('updateProgramms', response.data)
             }
             catch (e) {
@@ -80,7 +80,7 @@ export const getData = {
         },
         async courses_data(ctx, programm){
             try{
-                const response = await axios.get(`http://127.0.0.1:8000/api/v1/listinfocourses/`, {params: {'programm': programm}})
+                const response = await axios.get(`${process.env.VUE_APP_URL}/api/v1/listinfocourses/`, {params: {'programm': programm}})
                 await ctx.commit('updateCourses', response.data)
             }
             catch (e) {
@@ -89,7 +89,7 @@ export const getData = {
         },
         async prices_data(ctx){
             try{
-                const response = await axios.get(`http://127.0.0.1:8000/api/v1/listprices/`)
+                const response = await axios.get(`${process.env.VUE_APP_URL}/api/v1/listprices/`)
                 await ctx.commit('updatePrices', response.data)
             }
             catch (e) {
