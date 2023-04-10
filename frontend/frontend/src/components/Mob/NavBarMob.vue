@@ -1,7 +1,8 @@
 <template>
   <div class="main">
     <div class="wrapper-logo">
-      <img src="../../assets/logo.png" class="logo" alt="">
+      <img src="../../assets/logo.png" class="left-logo" alt="">
+      <img src="../../assets/new_logo_header.jpg" class="right-logo" alt="">
     </div>
     <div class="wrapper-btn-menu">
       <button class="button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
@@ -13,9 +14,9 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
 
-          <div class="offcanvas-title d-flex flex-row">
-            <img src="../../assets/logo.png" class="logo" alt="">
-            <h6 class="offcanvas-title pt-2" id="offcanvasRightLabel">AMAZING ENGLISH</h6>
+          <div class="offcanvas-title d-flex flex-row align-items-center">
+            <img src="../../assets/logo.png" class="left-logo" alt="">
+            <img src="../../assets/new_logo_header.jpg" class="right-logo" alt="">
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -97,11 +98,19 @@ export default {
     align-items: center;
   }
   .wrapper-logo{
-
+    display: flex;
+    align-items: center;
   }
-  .logo{
+  .left-logo{
     width: 50px;
     height: 50px;
+  }
+  .right-logo{
+    width: 120px;
+    height: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .wrapper-btn-menu{
     margin-right: 10px;

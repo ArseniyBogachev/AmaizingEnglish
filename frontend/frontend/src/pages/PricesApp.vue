@@ -28,7 +28,12 @@
       <div class="footer-block">
         <hr>
         <button type="button" class="button-modal button-footer mt-3 rounded-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                @click="this.selected_courses = 'Default'; this.selected_prices = 'Default'; this.radioActive = 'Индивидуальные'; this.programm = price.type_programm; priceTitle = price.title; uploadData()">Записаться на курс</button>
+                @click="this.selected_courses = 'Default';
+                this.selected_prices = 'Default';
+                this.radioActive = 'Индивидуальные';
+                this.programm = price.type_programm;
+                priceTitle = price.title; uploadData()"
+        >Записаться на курс</button>
       </div>
 
       <div class="modal fade h-100 w-100" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -16,7 +16,13 @@
         </ul>
         <div class="footer-body">
           <button type="button" class="button-modal button-body mt-3 rounded-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                  @click="this.selected_courses = course.id; this.selected_prices = 'Default'; this.radioAgeActive = '«Говори!»'; this.radioActive = 'Индивидуальные'; priceTitle = programm.programm_name; uploadData()">Записаться на курс</button>
+                  @click="this.selected_courses = course.id;
+                  this.selected_prices = 'Default';
+                  this.radioAgeActive = '«Говори!»';
+                  this.radioActive = 'Индивидуальные';
+                  priceTitle = programm.programm_name;
+                  uploadData()"
+          >Записаться на курс</button>
         </div>
 
         <div class="modal fade h-100 w-100" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

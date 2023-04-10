@@ -2,7 +2,8 @@
   <div class="main">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <img src="../../assets/logo.png" class="logo" alt="">
+        <img src="../../assets/logo.png" class="left-logo" alt="">
+        <img src="../../assets/new_logo_header.jpg" class="right-logo" alt="">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -101,9 +102,13 @@ export default {
   .dropdown-item:hover{
     border-radius: 5px;
   }
-  .logo{
+  .left-logo{
     width: 85px;
     height: 85px;
+  }
+  .right-logo{
+    width: 240px;
+    height: 40px;
   }
 
   .user-block{
