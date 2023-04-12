@@ -22,32 +22,32 @@
         </div>
         <div class="offcanvas-body p-3">
           <ul class="list-button">
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/')">ГЛАВНАЯ</button></li>
+            <li class="wrapper-button"><button type="button" data-bs-dismiss="offcanvas" class="choice-button" @click.prevent="$router.push('/')">ГЛАВНАЯ</button></li>
             <hr>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">КУРСЫ</a>
               <ul class="dropdown-menu">
-                <li v-for="p in programms"><a class="dropdown-item first" href="#" @click.prevent="$router.push(`/courses/${p.link}`)">{{p.programm_name}}</a></li>
+                <li v-for="p in programms"><a class="dropdown-item first" href="#" data-bs-dismiss="offcanvas" @click.prevent="$router.push(`/courses/${p.link}`)">{{p.programm_name}}</a></li>
               </ul>
             </li>
             <hr>
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/prices')">СТОИМОСТЬ</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" data-bs-dismiss="offcanvas" @click.prevent="$router.push('/prices')">СТОИМОСТЬ</button></li>
             <hr>
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/about')">О НАС</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" data-bs-dismiss="offcanvas" @click.prevent="$router.push('/about')">О ШКОЛЕ</button></li>
             <hr>
           </ul>
           <div class="phone mt-5 d-flex justify-content-center align-items-center">
             <h5 class="text-white">8(800)555-35-35</h5>
           </div>
           <ul class="list-button mt-5" v-if="this.$store.getters.verify">
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/profile')">МОЯ СТРАНИЦА</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" data-bs-dismiss="offcanvas" @click.prevent="$router.push('/profile')">МОЯ СТРАНИЦА</button></li>
             <hr>
-            <li class="wrapper-button"><button type="button" class="choice-button" @click="$emit('logout')">ВЫЙТИ</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" data-bs-dismiss="offcanvas" @click="$emit('logout')">ВЫЙТИ</button></li>
           </ul>
           <ul class="list-button mt-5" v-else>
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/login')">ВОЙТИ</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" data-bs-dismiss="offcanvas" @click.prevent="$router.push('/login')">ВОЙТИ</button></li>
             <hr>
-            <li class="wrapper-button"><button type="button" class="choice-button" @click.prevent="$router.push('/register')">РЕГИСТРАЦИЯ</button></li>
+            <li class="wrapper-button"><button type="button" class="choice-button" data-bs-dismiss="offcanvas" @click.prevent="$router.push('/register')">РЕГИСТРАЦИЯ</button></li>
           </ul>
           <section class="list-icon">
             <MyLinkIcons :icon="icon"></MyLinkIcons>
@@ -74,11 +74,11 @@ export default {
   },
   setup(){
     const icon = [
-      {name: 'fa-brands fa-facebook', color: '#3b5998'},
+      // {name: 'fa-brands fa-facebook', color: '#3b5998'},
       {name: 'fa-brands fa-telegram', color: '#55acee'},
-      {name: 'fa-brands fa-google', color: '#dd4b39'},
-      {name: 'fa-brands fa-instagram', color: '#ac2bac'},
-      {name: 'fa-brands fa-twitter', color: '#0082ca'},
+      // {name: 'fa-brands fa-google', color: '#dd4b39'},
+      // {name: 'fa-brands fa-instagram', color: '#ac2bac'},
+      // {name: 'fa-brands fa-twitter', color: '#0082ca'},
       {name: 'fa-brands fa-vk', color: '#333333'},
     ]
 

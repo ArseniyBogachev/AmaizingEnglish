@@ -2,6 +2,7 @@
   <div class="main">
     <imagecom class="d-none d-sm-block"></imagecom>
     <imagemob class="d-sm-none"></imagemob>
+    <ModalCourseEnrollment></ModalCourseEnrollment>
     <reviewscom class="reviews" :reviews="reviews"></reviewscom>
   </div>
 </template>
@@ -11,6 +12,7 @@
 import reviewscom from "@/components/ReviewsContent";
 import imagecom from "@/components/Com/ImageAndOffCanvasCom";
 import imagemob from "@/components/Mob/ImageAndOffCanvasMob";
+import ModalCourseEnrollment from "@/components/UI/ModalCourseEnrollment";
 
 export default {
   name: "HomeApp",
@@ -18,6 +20,7 @@ export default {
     reviewscom,
     imagecom,
     imagemob,
+    ModalCourseEnrollment,
   },
   setup() {
     const reviews = [
